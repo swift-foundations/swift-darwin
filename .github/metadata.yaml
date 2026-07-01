@@ -1,0 +1,9 @@
+# .github/metadata.yaml
+# Triaged 2026-04-29 — anomaly-fix pass after wave-4 PR-branch triage didn't apply.
+description: "Type-safe Darwin kqueue syscall wrappers for Swift."
+topics:
+  - foundations
+  - darwin
+homepage: "https://swift-institute.org"
+readme:
+  family: E
