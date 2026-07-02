@@ -23,7 +23,7 @@ Type-safe Darwin kqueue syscall wrappers for Swift. Provides Sendable, typed API
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/coenttb/swift-darwin.git", from: "0.1.0")
+    .package(url: "https://github.com/swift-foundations/swift-darwin.git", from: "0.1.0")
 ]
 ```
 
@@ -101,11 +101,11 @@ for i in 0..<count {
 ### Dependencies
 
 - [swift-kernel-primitives](https://github.com/coenttb/swift-kernel-primitives): Cross-platform kernel primitives
-- [swift-posix](https://github.com/coenttb/swift-posix): POSIX syscall wrappers
+- [swift-posix](https://github.com/swift-foundations/swift-posix): POSIX syscall wrappers
 
 ### Used By
 
-- [swift-io](https://github.com/coenttb/swift-io): Async I/O executor
+- [swift-io](https://github.com/swift-foundations/swift-io): Async I/O executor
 
 ---
 
