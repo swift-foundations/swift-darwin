@@ -9,8 +9,8 @@
 //
 // ===----------------------------------------------------------------------===//
 
-public import System_Primitives
 internal import Darwin_Kernel_Standard
+public import System_Primitives
 
 extension System.Processor.Physical {
     /// Physical processor count via `sysctl("hw.physicalcpu")`.
@@ -22,7 +22,12 @@ extension System.Processor.Physical {
     /// - Note: On Apple Silicon, this returns the total physical core count
     ///   (performance + efficiency cores combined).
     public static var count: System.Processor.Count {
-        let value = (try? Darwin.Kernel.Sysctl.byName("hw.physicalcpu", as: Int32.self)) ?? 0
+        let value: Int32
+        do throws(Darwin.Kernel.Sysctl.Error) {
+            value = try Darwin.Kernel.Sysctl.byName("hw.physicalcpu", as: Int32.self)
+        } catch {
+            value = 0
+        }
         let clamped = value > 0 ? UInt(value) : 1
         return System.Processor.Count(_unchecked: Cardinal(clamped))
     }

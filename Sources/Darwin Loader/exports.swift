@@ -9,7 +9,7 @@
 //
 // ===----------------------------------------------------------------------===//
 
+@_exported public import Darwin_Loader_Standard
 // Darwin uses POSIX loader APIs (dlopen/dlsym) for symbol lookup
 // and Darwin-specific dyld APIs for section enumeration
 @_exported public import POSIX_Loader
-@_exported public import Darwin_Loader_Standard

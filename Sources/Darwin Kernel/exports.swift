@@ -9,21 +9,20 @@
 //
 // ===----------------------------------------------------------------------===//
 
-@_exported public import Darwin_Kernel_Standard
-@_exported public import Darwin_Kernel_Event_Standard
-@_exported public import ISO_9945_Core
 @_exported public import Clock_Primitives
+@_exported public import Darwin_Kernel_Event_Standard
+@_exported public import Darwin_Kernel_Standard
 @_exported public import Error_Primitives
+@_exported public import ISO_9945_Core
 @_exported public import Memory_Primitives
-@_exported public import Random_Primitives
-@_exported public import System_Primitives
-@_exported public import Path_Primitives
-@_exported public import Random_Primitives
 // Wave 3.5-Final-Atomic (2026-05-02): consolidate to umbrella POSIX_Kernel import
 // (covers POSIX root namespace + all POSIX.Kernel.X sub-namespaces post-flip).
 // Umbrella module re-exports all POSIX Kernel sub-modules including Time, Identity,
 // Poll, Glob, Clock, Descriptor — needed for cross-platform Kernel typealias resolution.
 @_exported public import POSIX_Kernel
+@_exported public import Path_Primitives
+@_exported public import Random_Primitives
+@_exported public import System_Primitives
 
 /// Cross-platform `Kernel` namespace at L3.
 ///
@@ -60,7 +59,7 @@ public typealias Random = Random_Primitives.Random
 // Darwin-specific bridging is Darwin's L3-policy responsibility, not the
 // cross-platform L3-unifier's.
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
-extension POSIX.Kernel {
-    public typealias Kqueue = ISO_9945.Kernel.Kqueue
-}
+    extension POSIX.Kernel {
+        public typealias Kqueue = ISO_9945.Kernel.Kqueue
+    }
 #endif

@@ -48,12 +48,12 @@ extension ISO_9945.Kernel.File.Flush {
     /// - Parameter descriptor: The file descriptor.
     /// - Throws: ``Kernel/File/Flush/Error`` on failure (excluding EINTR).
     @inlinable
-    public static func data(_ descriptor: borrowing ISO_9945.Kernel.Descriptor) throws(ISO_9945.Kernel.File.Flush.Error) {
+    public static func data(_ descriptor: borrowing ISO_9945.Kernel.Descriptor) throws(Self.Error) {
         while true {
             do {
-                try ISO_9945.Kernel.File.Flush.barrierFsync(descriptor)
+                try Self.barrierFsync(descriptor)
                 return
-            } catch where error.code.isInterrupted {
+            } catch  where error.code.isInterrupted {
                 continue  // Retry on EINTR
             }
         }
@@ -73,12 +73,12 @@ extension ISO_9945.Kernel.File.Flush {
     /// - Parameter descriptor: The file descriptor.
     /// - Throws: ``Kernel/File/Flush/Error`` on failure (excluding EINTR).
     @inlinable
-    public static func full(_ descriptor: borrowing ISO_9945.Kernel.Descriptor) throws(ISO_9945.Kernel.File.Flush.Error) {
+    public static func full(_ descriptor: borrowing ISO_9945.Kernel.Descriptor) throws(Self.Error) {
         while true {
             do {
-                try ISO_9945.Kernel.File.Flush.fullFsync(descriptor)
+                try Self.fullFsync(descriptor)
                 return
-            } catch where error.code.isInterrupted {
+            } catch  where error.code.isInterrupted {
                 continue  // Retry on EINTR
             }
         }
@@ -98,12 +98,12 @@ extension ISO_9945.Kernel.File.Flush {
     /// - Parameter descriptor: The file descriptor.
     /// - Throws: ``Kernel/File/Flush/Error`` on failure (excluding EINTR).
     @inlinable
-    public static func barrier(_ descriptor: borrowing ISO_9945.Kernel.Descriptor) throws(ISO_9945.Kernel.File.Flush.Error) {
+    public static func barrier(_ descriptor: borrowing ISO_9945.Kernel.Descriptor) throws(Self.Error) {
         while true {
             do {
-                try ISO_9945.Kernel.File.Flush.barrierFsync(descriptor)
+                try Self.barrierFsync(descriptor)
                 return
-            } catch where error.code.isInterrupted {
+            } catch  where error.code.isInterrupted {
                 continue  // Retry on EINTR
             }
         }
