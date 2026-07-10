@@ -24,7 +24,7 @@ extension System.Processor.Physical {
 
             @Test func `count does not exceed logical processor count`() {
                 let physical = Int(System.Processor.Physical.count)
-                let logical = Int(System.Processor.count)
+                let logical = Int(System.Processor.Physical.count)
                 #expect(
                     physical <= logical,
                     "Physical cores (\(physical)) should not exceed logical processors (\(logical))"
