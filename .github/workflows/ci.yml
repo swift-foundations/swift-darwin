@@ -17,6 +17,10 @@ jobs:
   # Build + test matrix — see swift-foundations/.github/.github/workflows/swift-ci.yml (layer wrapper)
   ci:
     uses: swift-foundations/.github/.github/workflows/swift-ci.yml@main
+    # [CI-114] Platform identity: this package IS the Darwin platform root. Linux and
+    # Windows have no Darwin kernel to bind to, so those legs can only ever be red.
+    with:
+      platform-support: apple
     secrets: inherit
 
   # DocC umbrella-catalog pipeline per [DOC-019a] — see
