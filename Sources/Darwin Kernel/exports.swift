@@ -46,13 +46,13 @@ public typealias Random = Random_Primitives.Random
 // MARK: - Kqueue bridge (Wave 3.5-Final-Atomic mirror of IO.Uring at swift-linux)
 //
 // Darwin's Kqueue lives at L2 swift-darwin-standard
-// (`Darwin Kernel Event Standard/Darwin.Kernel.Kqueue.swift:26` —
-// `public typealias Kqueue = ISO_9945.Kernel.Event.Queue` inside
+// (`Darwin Kernel Event Standard/Darwin.Kernel.Kqueue.swift:25` —
+// `public typealias Kqueue = Darwin.Kernel.Event.Queue` inside
 // `#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)`).
-// Pre-flip, `Kernel.Kqueue` resolved via `Kernel = ISO_9945.Kernel`
-// directly. Post-flip (`Kernel = POSIX.Kernel`), `Kernel.Kqueue` would
-// resolve to `POSIX.Kernel.Kqueue` — but POSIX.Kernel has no Kqueue
-// (Darwin-specific; not part of POSIX-shared surface).
+// darwin-standard owns `Darwin.Kernel.Event.Queue`; the alias below is
+// Darwin's L3-policy bridge of that name into the POSIX-rooted unified
+// `Kernel` namespace (`Kernel = POSIX.Kernel` post-flip). POSIX.Kernel has
+// no Kqueue of its own (Darwin-specific; not part of POSIX-shared surface).
 //
 // This typealias bridges the namespace gap. Mirrors the IO.Uring bridge
 // at swift-linux L3, preserving [PLAT-ARCH-008e] composition discipline:
@@ -60,6 +60,6 @@ public typealias Random = Random_Primitives.Random
 // cross-platform L3-unifier's.
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     extension POSIX.Kernel {
-        public typealias Kqueue = ISO_9945.Kernel.Kqueue
+        public typealias Kqueue = Darwin.Kernel.Event.Queue
     }
 #endif
