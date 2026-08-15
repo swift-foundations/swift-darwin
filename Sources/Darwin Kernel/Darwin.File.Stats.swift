@@ -28,7 +28,9 @@
         /// - Parameter descriptor: The file descriptor to stat.
         /// - Returns: Darwin file metadata including birthtime.
         /// - Throws: ``Kernel/File/Stats/Error`` if the syscall fails.
-        public static func get(descriptor: borrowing ISO_9945.Kernel.Descriptor) throws(Error) -> Self {
+        public static func get(
+            descriptor: borrowing ISO_9945.Kernel.Descriptor
+        ) throws(Error) -> Self {
             try Darwin_Kernel_Standard.Darwin.File.Stats.get(descriptor)
         }
     }
