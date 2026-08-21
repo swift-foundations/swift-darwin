@@ -69,9 +69,7 @@ let package = Package(
                 .product(name: "Random Primitives", package: "swift-random-primitives"),
                 .product(name: "System Primitives", package: "swift-system-primitives"),
                 .product(name: "Path Primitives", package: "swift-path-primitives"),
-                // Wave 3.5-Final-Atomic (2026-05-02): consolidate to umbrella POSIX Kernel product
-                // (covers all POSIX.Kernel.X namespaces post-flip — Time/Identity/Poll/Glob/Clock/Descriptor
-                // were missing from individual deps). Umbrella product re-exports all sub-modules.
+
                 .product(name: "POSIX Kernel", package: "swift-posix"),
                 .product(name: "ISO 9945 Kernel", package: "swift-iso-9945"),
                 .product(name: "ISO 9945 Core", package: "swift-iso-9945"),
@@ -92,8 +90,6 @@ let package = Package(
                 .product(name: "Darwin Kernel Standard", package: "swift-darwin-standard"),
             ]
         ),
-
-        // MARK: - Test Targets
 
         .testTarget(
             name: "Darwin Kernel Tests",
